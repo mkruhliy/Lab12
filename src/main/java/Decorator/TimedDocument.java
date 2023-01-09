@@ -1,15 +1,20 @@
 package Decorator;
 
-public class TimedDocument implements Document{
-    private SmartDocument document;
+public class TimedDocument implements Document {
+    Document document;
     public TimedDocument(Document document) {
-        this.document = (SmartDocument) document;
+        this.document = document;
     }
+
+    public long measureTime(){
+        long start = System.currentTimeMillis();
+        this.parse();
+        return System.currentTimeMillis() - start;
+    }
+
 
     @Override
     public String parse() {
-        System.out.println("ttttiiimmmeee");
-        return "ttttiiimmmeee\n\n"+document.parse()+"\n\nooovvvveeeerrrr";
-
+        return document.parse();
     }
 }
